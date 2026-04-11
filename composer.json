@@ -1,12 +1,12 @@
 {
-    "name": "badcookies/sociallogin",
+    "name": "badcookies/sociallogin-plugin",
     "description": "Google and Facebook OAuth login and registration for OctoberCMS with RainLab.User integration.",
     "type": "october-plugin",
     "license": "MIT",
     "authors": [
         {
             "name": "BadCookies",
-            "email": "hello@example.com"
+            "email": "mariuszmbogucki@gmail.com"
         }
     ],
     "require": {
