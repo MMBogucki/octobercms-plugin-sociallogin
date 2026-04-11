@@ -1,0 +1,86 @@
+tabs:
+    fields:
+        # ──────────────────────────────────────────
+        # GENERAL
+        # ──────────────────────────────────────────
+        redirect_url:
+            tab: General
+            label: Redirect URL after login
+            type: pagefinder
+            span: full
+            required: true
+            comment: The page the user will be redirected to after a successful OAuth login or registration.
+
+        auth_page_url:
+            tab: General
+            label: Auth Handler Page
+            type: pagefinder
+            span: full
+            required: true
+            comment: The CMS page containing the [socialAuth] component. This page handles the actual session-based login. It must exist in your CMS theme.
+
+        # ──────────────────────────────────────────
+        # GOOGLE
+        # ──────────────────────────────────────────
+        google_enabled:
+            tab: Google OAuth
+            label: Enable Google login
+            type: switch
+            default: false
+            span: full
+            comment: Enables the Google login and registration buttons.
+
+        google_client_id:
+            tab: Google OAuth
+            label: Client ID
+            type: text
+            span: left
+            placeholder: e.g. 123456789-abc.apps.googleusercontent.com
+            trigger:
+                action: show
+                field: google_enabled
+                condition: checked
+
+        google_client_secret:
+            tab: Google OAuth
+            label: Client Secret
+            type: text
+            span: right
+            placeholder: GOCSPX-…
+            trigger:
+                action: show
+                field: google_enabled
+                condition: checked
+
+        # ──────────────────────────────────────────
+        # FACEBOOK
+        # ──────────────────────────────────────────
+        facebook_enabled:
+            tab: Facebook OAuth
+            label: Enable Facebook login
+            type: switch
+            default: false
+            span: full
+            comment: Enables the Facebook login and registration buttons.
+
+        facebook_client_id:
+            tab: Facebook OAuth
+            label: App ID
+            type: text
+            span: left
+            placeholder: e.g. 1234567890123456
+            trigger:
+                action: show
+                field: facebook_enabled
+                condition: checked
+
+        facebook_client_secret:
+            tab: Facebook OAuth
+            label: App Secret
+            type: text
+            span: right
+            placeholder: abc123…
+            trigger:
+                action: show
+                field: facebook_enabled
+                condition: checked

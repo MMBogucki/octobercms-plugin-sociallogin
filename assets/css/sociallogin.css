@@ -1,0 +1,134 @@
+/* ================================================
+   CRI.SocialLogin – Stylesheet
+   ================================================ */
+
+.cri-social-login {
+    width: 100%;
+    max-width: 400px;
+    margin: 0 auto;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+/* ── Divider ──────────────────────────────────── */
+
+.cri-social-divider {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    margin: 16px 0;
+    gap: 12px;
+}
+
+.cri-social-divider::before,
+.cri-social-divider::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: #d1d5db;
+}
+
+.cri-social-divider span {
+    color: #6b7280;
+    font-size: 13px;
+    font-weight: 500;
+    white-space: nowrap;
+    padding: 0 4px;
+}
+
+/* ── Buttons wrapper ──────────────────────────── */
+
+.cri-social-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+/* ── Base button ──────────────────────────────── */
+
+.cri-social-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    width: 100%;
+    padding: 11px 20px;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    transition: opacity 0.15s ease, box-shadow 0.15s ease, transform 0.1s ease;
+    letter-spacing: 0.01em;
+    line-height: 1;
+}
+
+.cri-social-btn:hover {
+    opacity: 0.92;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    transform: translateY(-1px);
+}
+
+.cri-social-btn:active {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+/* ── Google button ────────────────────────────── */
+
+.cri-social-btn--google {
+    background: #ffffff;
+    color: #3c4043;
+    border: 1px solid #dadce0;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+}
+
+.cri-social-btn--google:hover {
+    background: #f8f9fa;
+    border-color: #c0c4c9;
+    color: #3c4043;
+}
+
+/* ── Facebook button ──────────────────────────── */
+
+.cri-social-btn--facebook {
+    background: #1877f2;
+    color: #ffffff;
+    border: 1px solid #1877f2;
+    box-shadow: 0 1px 3px rgba(24, 119, 242, 0.3);
+}
+
+.cri-social-btn--facebook:hover {
+    background: #166fe5;
+    border-color: #166fe5;
+    color: #ffffff;
+}
+
+/* ── Icon ─────────────────────────────────────── */
+
+.cri-social-icon {
+    width: 18px;
+    height: 18px;
+    flex-shrink: 0;
+}
+
+/* ── Disabled state ───────────────────────────── */
+
+.cri-social-disabled {
+    color: #9ca3af;
+    font-size: 13px;
+    text-align: center;
+    padding: 8px 0;
+}
+
+/* ── Success message ──────────────────────────── */
+
+.cri-social-success {
+    background: #ecfdf5;
+    border: 1px solid #6ee7b7;
+    color: #065f46;
+    border-radius: 6px;
+    padding: 10px 14px;
+    font-size: 14px;
+    margin-bottom: 12px;
+}
