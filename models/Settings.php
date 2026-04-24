@@ -3,15 +3,17 @@
 namespace BadCookies\SocialLogin\Models;
 
 use Model;
-use Cms\Classes\Page;
 use Cms\Classes\Theme;
+use Cms\Classes\Page;
 
 class Settings extends Model
 {
+    use \System\Traits\ConfigMaker;
+
     public $implement = ['System.Behaviors.SettingsModel'];
 
     public $settingsCode   = 'badcookies_sociallogin_settings';
-    public $settingsFields = '$/badcookies/sociallogin/models/settings/fields.yaml';
+    public $settingsFields = 'fields.yaml';
 
     public static function getGoogleClientId(): string
     {
@@ -53,17 +55,6 @@ class Settings extends Model
         return self::resolvePageUrl('auth_page_url', '/social-auth');
     }
 
-    // ── Helpers ────────────────────────────────
-
-    /**
-     * Resolves a pagefinder URI to a proper URL.
-     *
-     * pagefinder returns a special OctoberCMS URI format:
-     * october://cms-page@link/account/social-auth?title=...
-     *
-     * We extract the path part (e.g. "account/social-auth"),
-     * load the CMS page by that filename and return its URL.
-     */
     private static function resolvePageUrl(string $key, string $default): string
     {
         $value = (string) self::get($key, '');
@@ -78,23 +69,23 @@ class Settings extends Model
         }
 
         // Parse october://cms-page@link/{filename}?title=...
-        // Extract the path between "link/" and "?"
         if (str_contains($value, 'cms-page@link/')) {
             $path = preg_replace('/^.*cms-page@link\/([^?]+).*$/', '$1', $value);
 
             if ($path && $path !== $value) {
                 try {
                     $theme = Theme::getActiveTheme();
-                    $page  = Page::load($theme, $path);
-                    if ($page && !empty($page->url)) {
-                        return $page->url;
+                    if ($theme) {
+                        $page = Page::load($theme, $path);
+                        if ($page && !empty($page->url)) {
+                            return $page->url;
+                        }
                     }
+                    // Use the extracted path as URL directly
+                    return '/' . ltrim($path, '/');
                 } catch (\Exception $e) {
-                    // Fall through to path-based fallback
+                    return '/' . ltrim($path, '/');
                 }
-
-                // Use the extracted path as URL directly
-                return '/' . ltrim($path, '/');
             }
         }
 
