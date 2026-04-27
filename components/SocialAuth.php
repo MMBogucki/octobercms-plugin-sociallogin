@@ -32,7 +32,7 @@ class SocialAuth extends ComponentBase
 
         if (!$cookieValue) {
             \Log::warning('[BadCookies.SocialLogin] No payload cookie – redirecting to /');
-            return redirect('/');
+            return \Redirect::to('/');
         }
 
         try {
@@ -63,7 +63,10 @@ class SocialAuth extends ComponentBase
                 $check = app('auth')->getUser();
                 \Log::info('[BadCookies.SocialLogin] Auth after login: ' . ($check ? 'id=' . $check->id : 'NULL'));
 
-                return redirect(Settings::getRedirectUrl())
+                // Zapisz sesję przed redirectem
+                \Session::save();
+
+                return \Redirect::to(Settings::getRedirectUrl())
                     ->with('badcookies_social_success', 'Successfully signed in.');
             }
 
@@ -77,16 +80,16 @@ class SocialAuth extends ComponentBase
                 $oauthService = new OAuthService();
                 $oauthService->linkToExistingUser($loggedUser, $payload['provider'], $payload['data']);
 
-                return redirect(Settings::getRedirectUrl())
+                return \Redirect::to(Settings::getRedirectUrl())
                     ->with('badcookies_social_success', ucfirst($payload['provider']) . ' account linked successfully.');
             }
 
         } catch (\Exception $e) {
             \Log::error('[BadCookies.SocialLogin] SocialAuth error: ' . $e->getMessage());
-            return redirect('/')->withErrors(['Login error: ' . $e->getMessage()]);
+            return \Redirect::to('/')->withErrors(['Login error: ' . $e->getMessage()]);
         }
 
-        return redirect('/');
+        return \Redirect::to('/');
     }
 
     // ── Helpers ────────────────────────────────
